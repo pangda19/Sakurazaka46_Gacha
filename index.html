@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>Sakurazaka46 Song Selector</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ca2371;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .inter-regular {
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .container {
+            text-align: center;
+            align-content: center;
+            max-width: 600px;
+            padding: 0px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Welcome Page */
+        .welcome-page img {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 2rem;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #ff6b9d, #FFCFCF);
+            border: none;
+            padding: 10px 40px;
+            font-size: 1rem;
+            color: rgb(0, 0, 0);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        #sakusenlogo {
+            width: 100%;
+            max-width: 50px;
+            margin-top: 2.5rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Gacha Page */
+        .gacha-container {
+            position: relative;
+            margin: 2rem auto;
+        }
+
+        .gacha-machine {
+            width: 400px;
+            height: 410px;
+            background: transparent;
+            border-radius: 20px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: none; /* ถ้าต้องการเอาเงาออก */
+        }
+
+        h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .gacha-screen {
+            width: 300px;
+            height: 300px;
+            background: transparent;
+            border-radius: 15px;
+            margin: 30px auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .gacha-capsule {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gacha-gif {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .gacha-handle {
+            width: 80px;
+            height: 40px;
+            background: #ffd700;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gacha-handle:hover {
+            background: #ffed4e;
+            transform: scale(1.05);
+        }
+
+        .gacha-handle::after {
+            content: 'SPIN';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            color: #333;
+            font-size: 0.8rem;
+        }
+
+        @keyframes handlePull {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(6px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .gacha-handle.pulling {
+            animation: handlePull 0.5s ease-in-out;
+        }
+
+
+        /* Result Page */
+        .result-container {
+            padding-top: 2rem;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            padding-top: 1rem;
+            padding: 2rem;
+        }
+
+        .song-image {
+            max-width: 100%;
+            width: 300px;
+            margin: 0 auto 1rem;
+            display: block;
+            object-fit: cover;
+        }
+
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #0996d3, #08c0dd);
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .btn.success {
+            background: linear-gradient(45deg, #56ab2f, #06ab6f);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gacha-machine {
+                width: 90vw;  /* 90% ของความกว้างหน้าจอ */
+                height: auto; /* ให้ความสูงปรับตามเนื้อหา */
+            }
+
+            .gacha-screen {
+                width: 80vw;
+                height: 80vw;
+            }
+
+            .gacha-gif {
+                width: 100%;
+                height: 100%;
+            }
+    
+                    
+            .result-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .song-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Fade in animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Page -->
+        <div id="welcome-page" class="page active welcome-page">
+            <img src="image/index_head.png"> 
+            <button class="start-btn" onclick="goToGacha()">Start</button>
+            <img src="image/Sakusen_logo.png" id="sakusenlogo" class="sakusenlogo">
+        </div>
+
+        <!-- Gacha Page -->
+        <div id="gacha-page" class="page">
+            <h2> Song Gacha Gacha </h2>
+            <p>Click the handle to get your song!</p>
+            <div class="gacha-container">
+                <div class="gacha-machine">
+                    <div class="gacha-screen">
+                        <div class="gacha-capsule" id="capsule">
+                            <img src="image/gacha.gif" class="gacha-gif" alt="Gacha Capsule">
+                        </div>
+                    </div>
+                    <div class="gacha-handle" id="gacha-handle" onclick="spinGacha()"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Result Page -->
+        <div id="result-page" class="page">
+            <div class="result-container">
+                <h3> Today’s song match for you </h3>
+                <a id="song-image-link" href="" download>
+                    <img id="song-image" class="song-image" src="" alt="Song Cover">
+                </a>
+                <p style="font-size: 0.9rem; margin: 20px;">Long press the image to save</p>
+                <p class="song-lyric" id="song-lyric"></p>
+                <div class="button-group">
+                    <a id="listen-btn" class="btn success" target="_blank">Listen</a>
+                    <button class="btn" onclick="shareToTwitter()">Share on Twitter</button>
+                    <button class="btn secondary" onclick="goToGacha()">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const songs = [
+            {
+                // Make or Break //
+                title: "Make or Break",
+                image: "image/result_MoB.png",
+                url: "https://www.youtube.com/watch?v=nTxTTZ0QLrI"
+            },
+            {
+                // Shindafuri //
+                title: "Shindafuri",
+                image: "image/result_Shindafuri.png",
+                url: "https://www.youtube.com/watch?v=WNH_ReRMt5k"
+                
+            },
+
+        ];
+
+        let currentSong = null;
+
+        function goToGacha() {
+            hideAllPages();
+            document.getElementById('gacha-page').classList.add('active', 'fade-in');
+        }
+
+        function goToResult() {
+            hideAllPages();
+            document.getElementById('result-page').classList.add('active', 'fade-in');
+        }
+
+        function hideAllPages() {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+        }
+
+        function spinGacha() {
+            const handle = document.getElementById('gacha-handle');
+            const capsule = document.getElementById('capsule');
+            
+            // Show result after capsule animation completes
+            setTimeout(() => {
+                capsule.classList.remove('spinning');
+                handle.style.pointerEvents = 'auto';
+                showResult();
+            }, 200);
+        }
+
+        function showResult() {
+            // เลือกเพลงแบบสุ่ม
+            const randomIndex = Math.floor(Math.random() * songs.length);
+            currentSong = songs[randomIndex];
+
+            const songTitleElement = document.getElementById('song-title');
+            if (songTitleElement) {
+                songTitleElement.textContent = currentSong.title;
+            }
+
+            const imageElement = document.getElementById('song-image');
+            const imageLink = document.getElementById('song-image-link');
+
+            imageElement.src = currentSong.image;
+            imageElement.alt = currentSong.title;
+            imageLink.href = currentSong.image;
+
+            // อัปเดตปุ่มฟังเพลง
+            const listenBtn = document.getElementById('listen-btn');
+            if (currentSong.url) {
+                listenBtn.href = currentSong.url;
+                listenBtn.style.display = "inline-block";
+            } else {
+                listenBtn.href = "#";
+                listenBtn.style.display = "none";
+            }
+
+            // แสดงหน้าผลลัพธ์
+            goToResult();
+        }
+
+
+        function saveResult() {
+            if (!currentSong) return;
+            
+            // Create a simple "save" by downloading the result as text
+            const resultText = `My Sakurazaka46 song today: ${currentSong.title}\nGenerated by Sakurazaka46 Song Selector`;
+            const blob = new Blob([resultText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `sakurazaka46-song-${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            // Show feedback
+            alert('Result saved! 📱');
+        }
+
+        function shareToTwitter() {
+            if (!currentSong) return;
+            
+            const tweetText = `🌸 My Sakurazaka46 song today is "${currentSong.title}"! 🎵\n\nWhat's your song today? Try the Sakurazaka46 Song Selector! ✨\n\n#Sakurazaka46 #櫻坂46 #SongSelector`;
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+            window.open(tweetUrl, '_blank');
+        }
+
+        // Add some sparkle effects on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.animation = 'fadeIn 1s ease-in';
+        });
+    </script>
+</body>
+</html>
