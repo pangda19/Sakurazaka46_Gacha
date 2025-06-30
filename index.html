@@ -100,11 +100,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: none; /* ถ้าต้องการเอาเงาออก */
+            box-shadow: none; 
         }
 
         h2 {
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
         }
 
         .gacha-screen {
@@ -112,7 +112,7 @@
             height: 300px;
             background: transparent;
             border-radius: 15px;
-            margin: 30px auto 20px;
+            margin: 10px auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -134,10 +134,10 @@
         }
 
         .gacha-handle {
-            width: 80px;
-            height: 40px;
+            width: 100px;
+            height: 50px;
             background: #ffd700;
-            border-radius: 20px;
+            border-radius: 50px;
             margin: 0 auto 20px;
             position: relative;
             cursor: pointer;
@@ -172,6 +172,11 @@
 
 
         /* Result Page */
+        h3 {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
         .result-container {
             padding-top: 2rem;
             width: auto;
@@ -198,9 +203,9 @@
         }
 
         .btn {
-            background: linear-gradient(45deg, #0996d3, #08c0dd);
+            background: linear-gradient(45deg, #000000, #294a4f);
             border: none;
-            padding: 12px 25px;
+            padding: 12px 15px;
             font-size: 1rem;
             color: white;
             border-radius: 25px;
@@ -209,7 +214,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             text-decoration: none;
             display: inline-block;
-            width: 200px;
+            width: 150px;
             text-align: center;
         }
 
@@ -229,8 +234,8 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .gacha-machine {
-                width: 90vw;  /* 90% ของความกว้างหน้าจอ */
-                height: auto; /* ให้ความสูงปรับตามเนื้อหา */
+                width: 90vw;  
+                height: auto; 
             }
 
             .gacha-screen {
@@ -269,15 +274,15 @@
     <div class="container">
         <!-- Welcome Page -->
         <div id="welcome-page" class="page active welcome-page">
-            <img src="image/index_head.png"> 
+            <img src="image/index_head2.png"> 
             <button class="start-btn" onclick="goToGacha()">Start</button>
             <img src="image/Sakusen_logo.png" id="sakusenlogo" class="sakusenlogo">
         </div>
 
         <!-- Gacha Page -->
         <div id="gacha-page" class="page">
-            <h2> Song Gacha Gacha </h2>
-            <p>Click the handle to get your song!</p>
+            <h2> Sakurazaka46 Song Capsule </h2>
+            <p>Turn the handle to get your song!</p>
             <div class="gacha-container">
                 <div class="gacha-machine">
                     <div class="gacha-screen">
@@ -290,20 +295,25 @@
             </div>
         </div>
 
+        <!-- Animation Page (ก่อนหน้า Result) -->
+        <div id="gacha-anim-page" class="page">
+            <img src="image/gasha.pop.gif" alt="Spinning..." style="width: 200px; margin: 100px auto; display: block;">
+        </div>
+
 
         <!-- Result Page -->
         <div id="result-page" class="page">
             <div class="result-container">
-                <h3> Today’s song match for you </h3>
+                <h3> Your Sakurazaka46 song for today is: </h3>
                 <a id="song-image-link" href="" download>
                     <img id="song-image" class="song-image" src="" alt="Song Cover">
                 </a>
-                <p style="font-size: 0.9rem; margin: 20px;">Long press the image to save</p>
+                <p style="font-size: 0.9rem; margin: 20px;">Long press the image to save it!</p>
                 <p class="song-lyric" id="song-lyric"></p>
                 <div class="button-group">
                     <a id="listen-btn" class="btn success" target="_blank">Listen</a>
-                    <button class="btn" onclick="shareToTwitter()">Share on Twitter</button>
-                    <button class="btn secondary" onclick="goToGacha()">Try Again</button>
+                    <button class="btn" onclick="shareToTwitter()">Share on X</button>
+                    <button class="btn secondary" onclick="goToGacha()"> 🔁 Start Over</button>
                 </div>
             </div>
         </div>
@@ -320,9 +330,22 @@
             {
                 // Shindafuri //
                 title: "Shindafuri",
-                image: "image/result_Shindafuri.png",
+                image: "image/result_Shindafuri.jpg",
                 url: "https://www.youtube.com/watch?v=WNH_ReRMt5k"
                 
+            },
+            {
+                // Saishuu no Chikatetsu ni Notte //
+                title: "Saishuu no Chikatetsu ni Notte",
+                image: "image/result_s.jpg",
+                url: "https://www.youtube.com/watch?v=WNH_ReRMt5k"
+                
+            },
+            {
+                // Omotta Yori mo Sabishikunai //
+                title: "Omotta Yori mo Sabishikunai",
+                image: "image/result_omotta.jpg",
+                url: "https://youtu.be/D0W44Z3D3wo?si=qczX_mg0M-PBuGcz"
             },
 
         ];
@@ -357,6 +380,20 @@
                 showResult();
             }, 200);
         }
+
+        function goToResult() {
+            hideAllPages();
+
+            // โชว์หน้า animation ก่อน
+            document.getElementById('gacha-anim-page').classList.add('active');
+
+            // หลัง 2 วิ ค่อยโชว์หน้าผลลัพธ์
+            setTimeout(() => {
+                hideAllPages();
+                document.getElementById('result-page').classList.add('active', 'fade-in');
+            }, 2000);
+        }
+
 
         function showResult() {
             // เลือกเพลงแบบสุ่ม
@@ -407,18 +444,22 @@
             alert('Result saved! 📱');
         }
 
-        function shareToTwitter() {
-            if (!currentSong) return;
-            
-            const tweetText = `🌸 My Sakurazaka46 song today is "${currentSong.title}"! 🎵\n\nWhat's your song today? Try the Sakurazaka46 Song Selector! ✨\n\n#Sakurazaka46 #櫻坂46 #SongSelector`;
+function shareToTwitter() {
+
+    if (!currentSong) return;
+
+            const gameUrl = 'https://sakurazaka101.com/gacha'; // link waiting
+            const tweetText =
+                `🌸 My Sakurazaka46 song today is "${currentSong.title}"! 🎵\n\n` +
+                `What's your song today? Try the Sakurazaka46 Song Selector! ✨\n\n` +
+                `${gameUrl}\n\n` +
+                `#Sakurazaka46 #櫻坂46 #Sakurazaka46_SOUNDCAPSULE`;
+
             const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+
             window.open(tweetUrl, '_blank');
         }
 
-        // Add some sparkle effects on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.style.animation = 'fadeIn 1s ease-in';
-        });
     </script>
 </body>
 </html>
