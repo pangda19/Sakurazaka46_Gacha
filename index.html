@@ -6,7 +6,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <title>Sakurazaka46 Song Selector</title>
+    <!-- Open Graph metadata wait for link -->
+    <meta property="og:title" content="SakuSongGacha - Which Sakurazaka46 song fits your mood today?" />
+    <meta property="og:description" content="Spin the Gacha and discover your Sakurazaka46 song of the day!" />
+    <meta property="og:image" content="https://pangda19.github.io/Sakurazaka46_Gacha/image/og_image.jpg" />
+    <meta property="og:url" content="https://pangda19.github.io/Sakurazaka46_Gacha/" />
+    <meta property="og:type" content="website" />
+    <title>Sakurazaka46 Song Gacha</title>
     <style>
         * {
             margin: 0;
@@ -59,7 +65,7 @@
         }
 
         .start-btn {
-            background: linear-gradient(45deg, #ff6b9d, #FFCFCF);
+            background: linear-gradient(45deg, #ffdce8, #FFCFCF);
             border: none;
             padding: 10px 40px;
             font-size: 1rem;
@@ -135,7 +141,7 @@
 
         .gacha-handle {
             width: 100px;
-            height: 50px;
+            height: 46px;
             background: #ffd700;
             border-radius: 50px;
             margin: 0 auto 20px;
@@ -200,7 +206,10 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            padding-left: 5vw;
+            padding-right: 5vw;
         }
+
 
         .btn {
             background: linear-gradient(45deg, #000000, #294a4f);
@@ -216,6 +225,7 @@
             display: inline-block;
             width: 150px;
             text-align: center;
+            max-width: 100%;
         }
 
         .btn:hover {
@@ -281,7 +291,7 @@
 
         <!-- Gacha Page -->
         <div id="gacha-page" class="page">
-            <h2> Sakurazaka46 Song Capsule </h2>
+            <h2> Sakurazaka46 Song Gacha </h2>
             <p>Turn the handle to get your song!</p>
             <div class="gacha-container">
                 <div class="gacha-machine">
@@ -313,7 +323,7 @@
                 <div class="button-group">
                     <a id="listen-btn" class="btn success" target="_blank">Listen</a>
                     <button class="btn" onclick="shareToTwitter()">Share on X</button>
-                    <button class="btn secondary" onclick="goToGacha()"> 🔁 Start Over</button>
+                    <button class="btn secondary" onclick="goToGacha()"> Start Over</button>
                 </div>
             </div>
         </div>
@@ -337,7 +347,7 @@
             {
                 // Saishuu no Chikatetsu ni Notte //
                 title: "Saishuu no Chikatetsu ni Notte",
-                image: "image/result_Saishu.jpg",
+                image: "image/result_saishu.jpg",
                 url: "https://open.spotify.com/track/4d6fEBAjexpIXkh5pg30pe?si=f4d947505eb64969"
                 
             },
@@ -347,7 +357,168 @@
                 image: "image/result_omotta.jpg",
                 url: "https://youtu.be/D0W44Z3D3wo?si=qczX_mg0M-PBuGcz"
             },
-
+            {
+                // Danzetsu //
+                title: "Danzetsu",
+                image: "image/result_Danzetsu.jpg",
+                url: "https://open.spotify.com/track/4Den6HjuGSHIz0y9ZV4CsR?si=2c07a05b805d4f5d"
+            },
+            {
+                // Minato-ku Parsley //
+                title: "Minato-ku Parsley",
+                image: "image/result_minatoku.jpg",
+                url: "https://www.youtube.com/watch?v=aLu4oyQ2zdw"
+            },
+            {
+                // Boku no Dilemma //
+                title: "Boku no Dilemma",
+                image: "image/result_dilemma_1.jpg",
+                url: "https://www.youtube.com/watch?v=ZBk4V-uqcXs&pp=ygURYm9rdSBubyBkaWxsZW1tYSA%3D"
+            },
+            {
+                // Boku no Dilemma //
+                title: "Boku no Dilemma",
+                image: "image/result_dilemma_2.jpg",
+                url: "https://www.youtube.com/watch?v=ZBk4V-uqcXs&pp=ygURYm9rdSBubyBkaWxsZW1tYSA%3D"
+            },
+            {
+                // I'm in  //
+                title: "I'm in ",
+                image: "image/result_imin.jpg",
+                url: "https://open.spotify.com/track/2Y51hgeUpf5DgH4X8NgJUn?si=4646f3f5f7d9473e"
+            },
+            {
+                // Ikutsu no Koro ni Modoritai no ka?  //
+                title: "Ikutsu no Koro ni Modoritai no ka?",
+                image: "image/result_Ikutsu.jpg",
+                url: "https://www.youtube.com/watch?v=7xx66mR_HeE"
+            },
+            {
+                // Renai Musou //
+                title: "Renai Musou",
+                image: "image/result_renai.jpg",
+                url: "https://open.spotify.com/track/5vRGSkQiKlJudkJ2vUKIOe?si=ddd8af7a24d14024"
+            },
+            {
+                // Abura wo Sase! //
+                title: "Abura wo Sase!",
+                image: "image/result_abura.jpg",
+                url: "https://youtu.be/x9a0_2aGeWU"
+            },
+            {
+                // Shoninyokkyu //
+                title: "Shoninyokkyu",
+                image: "image/result_Shonin.jpg",
+                url: "https://youtu.be/x_BjvhMW9TE"
+            },
+            {
+                // Jamaica Beer //
+                title: "Jamaica Beer",
+                image: "image/result_JamaicaBeer.jpg",
+                url: "https://open.spotify.com/track/37h3M4ZYJgSRy0cXArsH59"
+            },
+            {
+                // Isshun no Uma //
+                title: "Isshun no Uma",
+                image: "image/result_Isshun.jpg",
+                url: "https://open.spotify.com/track/7jLbrfs3YtWO232XEU3iD1?si=5e2759f81a5a433c"
+            },
+            { 
+                // Start over! //
+                title: "Start over!",
+                image: "image/result_Startover.jpg",
+                url: "https://www.youtube.com/watch?v=YJRFD1AdaUE"
+            },
+            { 
+                // Yaru Shika Nai Jan //
+                title: "Yaru Shika Nai Jan",
+                image: "image/result_yaru.jpg",
+                url: "https://open.spotify.com/track/5HlMKsatk8faYUEiy7d0El?si=be1491ab16f44788"
+            },
+            { 
+                // Sono hi made //
+                title: "Sono hi made",
+                image: "image/result_sonohi.jpg",
+                url: "https://www.youtube.com/watch?v=F2lWsUJotmc"
+            },
+            { 
+                // Cool //
+                title: "Cool",
+                image: "image/result_cool.jpg",
+                url: "https://youtu.be/XEKPn3WbksE"
+            },
+            { 
+                // Addiction //
+                title: "Addiction",
+                image: "image/result_addiction.jpg",
+                url: "https://youtu.be/XEKPn3WbksE"
+            },
+            { 
+                // Hikikomoru Jikan wa Nai //
+                title: "Hikikomoru Jikan wa Nai",
+                image: "image/result_hiki.jpg",
+                url: "https://youtu.be/KYvq8-xY1Gg"
+            },
+            { 
+                // Honshitsuteki na Koto //
+                title: "Honshitsuteki na Koto",
+                image: "image/result_Honshi.jpg",
+                url: "https://youtu.be/iZhbx2mcmug"
+            },
+            { 
+                // Jouken hansha de nakete kuru //
+                title: "Jouken hansha de nakete kuru",
+                image: "image/result_Jouken.jpg",
+                url: "https://open.spotify.com/track/5z8xkccoi9bnA8SGf2VQnk?si=805f5679bf834ba3"
+            },
+            { 
+                // Zutto Haru Dattara Naa //
+                title: "Zutto Haru Dattara Naa",
+                image: "image/result_Zutto.jpg",
+                url: "https://open.spotify.com/track/1ES3bgzwzP257JequGIXjB?si=010355bc79804497"
+            },
+            { 
+                // Masatsukeisu //
+                title: "Masatsukeisu",
+                image: "image/result_masatsu.jpg",
+                url: "https://youtu.be/D8piCp9XMKA?si=DfkByzQsukLLFxQU"
+            },
+            { 
+                // Natsu no Chikamichi //
+                title: "Natsu no Chikamichi",
+                image: "image/result_nutsuno.jpg",
+                url: "https://youtu.be/nV1DHIWSdEo?si=cPYFuIaGpMQMmaXq"
+            },
+            { 
+                // Anthem time //
+                title: "Anthem time",
+                image: "image/result_Anthem.jpg",
+                url: "https://open.spotify.com/track/5NAhakYBfDrnPwclaAqKQT?si=79032ab26b5b4560"
+            },
+            { 
+                // Sakurazaka no Uta //
+                title: "Sakurazaka no Uta",
+                image: "image/result_sakuuta.jpg",
+                url: "https://open.spotify.com/track/6c49BNfzR0zzy2VNx6xU7q?si=ab9bf4a04b9e4159"
+            },
+            { 
+                // Moshikashitara Shinjitsu //
+                title: "Moshikashitara Shinjitsu",
+                image: "image/result_moshika.jpg",
+                url: "https://open.spotify.com/track/1OIrd9dU5JOxAO8cXvQYGQ?si=2cdad01a966144d4"
+            },
+            { 
+                // Nando LOVE SONG no Kashi wo Yomikaeshita darou //
+                title: "Nando LOVE SONG no Kashi wo Yomikaeshita darou",
+                image: "image/result_nando.jpg",
+                url: "https://www.youtube.com/watch?v=tltXZSiAAdQ"
+            },
+            { 
+                // One-way stairs //
+                title: "One-way stairs",
+                image: "image/result_One-way",
+                url: "https://open.spotify.com/track/5hc0f76iSuGeWAovzeRDzM?si=c87fb45b929e44b8"
+            },
         ];
 
         let currentSong = null;
