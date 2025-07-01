@@ -28,6 +28,7 @@
             justify-content: center;
             align-items: center;
             color: white;
+            padding-top: env(safe-area-inset-top);
         }
 
         .inter-regular {
@@ -38,9 +39,14 @@
 
         .container {
             text-align: center;
-            align-content: center;
             max-width: 600px;
-            padding: 0px;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* จัดกลางแนวตั้ง */
+            align-items: center;     /* จัดกลางแนวนอน */
+            padding: env(safe-area-inset-top) 1rem 1rem;
         }
 
         .page {
