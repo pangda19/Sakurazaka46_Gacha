@@ -12,6 +12,11 @@
     <meta property="og:image" content="https://pangda19.github.io/Sakurazaka46_Gacha/image/og_image.jpg" />
     <meta property="og:url" content="https://sakurazaka101.com/staging/sakusonggacha/" />
     <meta property="og:type" content="website" />
+    <!--  twitter card  -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SakuSongGacha">
+    <meta name="twitter:description" content="Spin the capsule and discover your Sakurazaka46 song of the day!">
+    <meta name="twitter:image" content="https://pangda19.github.io/Sakurazaka46_Gacha/image/og_image.jpg">
     <title>Sakurazaka46 Song Gacha</title>
     <style>
         * {
@@ -48,6 +53,7 @@
             align-items: center;     /* จัดกลางแนวนอน */
             padding: env(safe-area-inset-top) 1rem 1rem;
         }
+
 
         .page {
             display: none;
@@ -247,6 +253,15 @@
             background: linear-gradient(45deg, #56ab2f, #06ab6f);
         }
 
+        .back-to-home {
+            font-size: 0.8rem;
+            margin: 20px;
+            display: block;
+            text-decoration: underline;
+            color: white;
+        }
+
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .gacha-machine {
@@ -331,6 +346,7 @@
                     <button class="btn" onclick="shareToTwitter()">Share on X</button>
                     <button class="btn secondary" onclick="goToGacha()"> Start Over</button>
                 </div>
+                <a href="https://sakurazaka101.com" class="back-to-home">Go to Sakurazaka101</a>
             </div>
         </div>
     </div>
@@ -379,13 +395,13 @@
                 // Boku no Dilemma //
                 title: "Boku no Dilemma",
                 image: "image/result_dilemma_1.jpg",
-                url: "https://www.youtube.com/watch?v=ZBk4V-uqcXs&pp=ygURYm9rdSBubyBkaWxsZW1tYSA%3D"
+                url: "https://www.youtube.com/watch?v=ZBk4V-uqcXs"
             },
             {
                 // Boku no Dilemma //
                 title: "Boku no Dilemma",
                 image: "image/result_dilemma_2.jpg",
-                url: "https://www.youtube.com/watch?v=ZBk4V-uqcXs&pp=ygURYm9rdSBubyBkaWxsZW1tYSA%3D"
+                url: "https://www.youtube.com/watch?v=ZBk4V-uqcXs"
             },
             {
                 // I'm in  //
@@ -439,7 +455,7 @@
                 // Yaru Shika Nai Jan //
                 title: "Yaru Shika Nai Jan",
                 image: "image/result_yaru.jpg",
-                url: "https://open.spotify.com/track/5HlMKsatk8faYUEiy7d0El?si=be1491ab16f44788"
+                url: "https://open.spotify.com/track/5HlMKsatk8faYUEiy7d0El?si=31e1c1931a0f4605"
             },
             { 
                 // Sono hi made //
@@ -603,7 +619,6 @@
             goToResult();
         }
 
-
         function saveResult() {
             if (!currentSong) return;
             
@@ -625,7 +640,7 @@ function shareToTwitter() {
 
     if (!currentSong) return;
 
-            const gameUrl = 'https://sakurazaka101.com/staging/sakusonggacha/'; // link waiting
+            const gameUrl = 'https://sakurazaka101.com/sakusonggacha/'; // link waiting
             const tweetText =
                 `🌸 My Sakurazaka46 song today is "${currentSong.title}"! 🎵\n\n` +
                 `What's your song today? Try the Sakurazaka46 Song Gacha! ✨\n\n` +
